@@ -1,35 +1,72 @@
-# Mini-projet Kubernetes – Déploiement de WordPress (sans Helm)
+# Mini-projet Kubernetes — Déploiement de WordPress via Manifests
 
-Ce projet consiste à déployer WordPress et MySQL sur Kubernetes en utilisant uniquement des fichiers manifests YAML (pas Helm).
+📋 Objectif
+Ce projet consiste à déployer WordPress et MySQL sur un cluster Kubernetes en utilisant uniquement des manifests YAML (sans Helm), dans le but de comprendre et maîtriser les composants essentiels d’un déploiement K8s manuel.
 
-## 🔧 Ce que fait ce projet
+🧱 Stack technique
+Kubernetes (manifests YAML)
 
-- Déploie une base de données MySQL avec un `Deployment` et un `Service` ClusterIP
-- Déploie WordPress avec un `Deployment` et un `Service` NodePort
-- Utilise des variables d’environnement pour connecter WordPress à MySQL
-- Monte un volume pour stocker les données WordPress de manière persistante
+WordPress
 
-## 📁 Fichiers fournis
+MySQL
 
-- `mysql-deployment.yaml`
-- `mysql-service.yaml`
-- `wordpress-deployment.yaml`
-- `wordpress-service.yaml`
+Services : ClusterIP, NodePort
 
-## ▶️ Commandes de lancement
+Volumes persistants (hostPath ou PVC selon contexte)
 
-```bash
+🔧 Étapes de déploiement
+MySQL
+
+mysql-deployment.yaml : création d’un Deployment avec 1 seul pod
+
+mysql-service.yaml : exposition en interne via ClusterIP
+
+WordPress
+
+wordpress-deployment.yaml : création du pod avec les bonnes variables d’environnement (DB info)
+
+wordpress-service.yaml : exposition en externe via NodePort
+
+Stockage
+
+Volume monté sur le pod WordPress (/data) pour stocker les données de manière persistante
+
+Réseau
+
+Les services permettent la communication entre les pods et l’accès depuis l’extérieur
+
+
+# 📂 Arborescence du projet
+```
+k8s-wordpress/
+├── mysql-deployment.yaml
+├── mysql-service.yaml
+├── wordpress-deployment.yaml
+├── wordpress-service.yaml
+└── README.md
+```
+# ✅ Lancement
+
+```
 kubectl apply -f mysql-deployment.yaml
 kubectl apply -f mysql-service.yaml
 kubectl apply -f wordpress-deployment.yaml
 kubectl apply -f wordpress-service.yaml
+```
 
-✅ Résultat attendu
-Une fois les pods en cours d’exécution, accéder à l’interface WordPress via l’adresse du nœud + le NodePort.
+Vérifier que les pods tournent :
+```
+kubectl get pods
+```
 
-📌 Objectifs pédagogiques
-Comprendre les ressources Kubernetes de base (Deployment, Service, Volume)
+# 🎓 Compétences développées
+Déploiement manuel sur Kubernetes
 
-Déployer une application réelle sans Helm
+Écriture et structuration de fichiers YAML
 
-Travailler avec les fichiers manifests directement
+Gestion de volumes, variables d’environnement et services réseau
+
+Compréhension des dépendances entre services dans un cluster K8s
+
+
+
