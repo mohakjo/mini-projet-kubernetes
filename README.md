@@ -1,4 +1,4 @@
-# ☸️ Mini-projet Kubernetes – Déploiement de WordPress (sans Helm)
+# Mini-projet Kubernetes – Déploiement de WordPress (sans Helm)
 
 Ce projet consiste à déployer WordPress et MySQL sur Kubernetes en utilisant uniquement des fichiers manifests YAML (pas Helm).
 
