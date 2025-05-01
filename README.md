@@ -1,6 +1,7 @@
-# Mini-projet Kubernetes — Déploiement de WordPress via Manifests
+## Mini-projet Kubernetes — Déploiement de WordPress via Manifests
 
-📋 Objectif
+# Objectif 
+
 Ce projet consiste à déployer WordPress et MySQL sur un cluster Kubernetes en utilisant uniquement des manifests YAML (sans Helm), dans le but de comprendre et maîtriser les composants essentiels d’un déploiement K8s manuel.
 
 🧱 Stack technique
